@@ -7,10 +7,10 @@ interface VehicleModel {
 
 export const fetchVehicleData = async (
   makeId: string,
-  year: string
+  year: string,
 ): Promise<VehicleModel[]> => {
   const response = await fetch(
-    `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
+    `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`,
   );
 
   if (!response.ok) {

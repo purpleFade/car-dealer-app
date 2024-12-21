@@ -13,10 +13,10 @@ const VehicleList = async ({ makeId, year }: VehicleListProps) => {
   }
 
   return (
-    <ul className='space-y-2'>
+    <ul className="space-y-2">
       {data.map((model) => (
-        <li key={model.Model_ID} className='p-4 rounded shadow-md'>
-          <h2 className='font-medium'>
+        <li key={model.Model_ID} className="p-4 rounded shadow-md">
+          <h2 className="font-medium">
             {model.Make_Name} - {model.Model_Name}
           </h2>
         </li>
