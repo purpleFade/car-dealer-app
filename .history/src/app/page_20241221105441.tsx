@@ -17,8 +17,8 @@ const fetchVehicles = async (): Promise<Vehicle[]> => {
 
 export default function Home() {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-  const [year, setYear] = useState<number | null>(null);
-  const [makeId, setMakeId] = useState<string | null>(null);
+  const [year, setYear] = useState<number>(2024);
+  const [makeId, setMakeId] = useState<string>('');
 
   useEffect(() => {
     fetchVehicles().then((vehicles) => setVehicles(vehicles));
