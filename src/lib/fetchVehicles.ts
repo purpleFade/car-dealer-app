@@ -1,15 +1,15 @@
 import { Vehicle } from '@/types/vehicle';
 
 export const fetchVehicles = async (): Promise<Vehicle[]> => {
-  const response = await fetch(
-    'https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json',
-  );
+  const url = process.env.NEXT_PUBLIC_ALL_VEHICLES!;
+
+  const response = await fetch(url + '?format=json');
 
   if (!response.ok) {
-    throw new Error('Failed to fetch vehicle data!');
+    console.warn(`Non-200 response: ${response.status}`);
+    return [];
   }
 
   const data = await response.json();
-
-  return data.Results || [];
+  return data.Results ?? [];
 };

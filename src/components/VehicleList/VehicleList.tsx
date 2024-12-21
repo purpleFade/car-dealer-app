@@ -6,28 +6,27 @@ interface VehicleListProps {
 }
 
 const VehicleList = async ({ makeId, year }: VehicleListProps) => {
-  try {
-    const data = await fetchVehicleData(makeId, year);
-    if (!data) {
-      throw new Error('Failed to fetch vehicle data!');
-    }
+  const data = await fetchVehicleData(makeId, year);
 
+  if (!data || data.length === 0) {
     return (
-      <ul className="space-y-2">
-        {data.map((model) => (
-          <li key={model.Model_ID} className="p-4 rounded shadow-md">
-            <h2 className="font-medium">
-              {model.Make_Name} - {model.Model_Name}
-            </h2>
-          </li>
-        ))}
-      </ul>
-    );
-  } catch (error) {
-    return (
-      <div>Error: {error instanceof Error ? error.message : 'There are no items!'}</div>
+      <p>
+        No data found for make ID {makeId} and year {year}
+      </p>
     );
   }
+
+  return (
+    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {data.map((model) => (
+        <li key={model.Model_ID} className="p-4 rounded shadow-md">
+          <h2 className="font-medium">
+            {model.Make_Name} - {model.Model_Name}
+          </h2>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default VehicleList;

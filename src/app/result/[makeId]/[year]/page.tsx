@@ -23,12 +23,7 @@ export default Page;
 
 export async function generateStaticParams() {
   let makeIds: number[] = [];
-  try {
-    makeIds = await fetchAllMakeIds();
-  } catch (e) {
-    console.error('Failed to fetch all make IDs:', e);
-    return [];
-  }
+  makeIds = await fetchAllMakeIds();
 
   const years = Array.from({ length: 2024 - 2015 + 1 }, (_, i) => 2015 + i);
 
