@@ -8,11 +8,11 @@ interface LayoutProps extends PropsWithChildren {
   }
 }
 
-export function generateMedatada({ params }: LayoutProps): Metadata {
-  const { makeId, year } = params
+export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
+  const { makeId, year } = await params
 
   return {
-    title: `Results for ${makeId} ${year}`,
+    title: `Results for ${makeId} model ${year}`,
     description: `Results page for ${makeId} ${year}. Browse models, specs, and more.`
   }
 }

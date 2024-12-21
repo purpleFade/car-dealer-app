@@ -27,13 +27,13 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-3">
+    <div className="flex flex-col items-center min-h-screen justify-center gap-3">
       <h1 className="text-2xl font-bold">Vehicles</h1>
 
       <select
         value={makeId}
         onChange={(e) => handleMakeIdChange(e.target.value)}
-        className="block text-black w-1/2 p-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500"
+        className="cursor-pointer block text-black w-1/2 p-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500"
       >
         <option value="" disabled>
           Select a Name
@@ -47,9 +47,9 @@ export default function Home() {
       </select>
 
       <select
-        value={year}
+        value={year === 0 ? '' : year}
         onChange={(e) => handleYearChange(+e.target.value)}
-        className="block text-black w-1/2 p-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500"
+        className="cursor-pointer block text-black w-1/2 p-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-purple-500 focus:border-purple-500"
       >
         <option value="" disabled>
           Select a Year
