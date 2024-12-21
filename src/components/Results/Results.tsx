@@ -11,7 +11,10 @@ interface ResultsProps {
 const Results = ({ makeId, year }: ResultsProps) => {
   return (
     <div className="p-6 min-h-screen">
-      <Link href="/" className="font-bold text-purple-800 text-2xl hover:text-purple-300 transition-colors">
+      <Link
+        href="/"
+        className="font-bold text-purple-800 text-2xl hover:text-purple-300 transition-colors"
+      >
         Return Home
       </Link>
 
