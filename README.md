@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Car Dealer App
+
+Welcome to the **Car Dealer App**, a Next.js (App Router) application that displays vehicle information from the [VPIC API](https://vpic.nhtsa.dot.gov/api/). This project is a **test assessment**/demo for a front-end JavaScript engineer role, showcasing data fetching, dynamic routing, and client-side interactions in Next.js **13+**.
+
+## Features
+
+1. **Fetch Vehicle Makes**  
+   - Uses the VPIC endpoint to retrieve makes for vehicle type “car”.
+   - Displays the list of makes in a `<select>` dropdown on the homepage.
+
+2. **Dynamic Routing for Results**  
+   - Generates pages for each `[makeId]/[year]` combination using `generateStaticParams()` for **Static Site Generation** (SSG).
+   - Loads models from the VPIC API for the selected make and year, displaying them on a dedicated page.
+
+3. **Client & Server Components**  
+   - Demonstrates usage of Next.js **App Router** with both **server** components (for data fetching) and **client** components (for user interaction).
+
+4. **Placeholder “No Data” Fallback**  
+   - Gracefully handles scenarios where the API returns no data or a non-200 status.
+
+5. **Environment Variables**  
+   - Fetch endpoints are configurable via `.env` files (e.g. `ALL_VEHICLES`, `ALL_QUERY_VEHICLES`).
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/purpleFade/car-dealer-app.git
+cd car-dealer-app
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env.local` file in the root of the project (same directory as `package.json`), and set the necessary variables. For example:
+
+```bash
+# .env.local
+ALL_VEHICLES="https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json"
+ALL_QUERY_VEHICLES="https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear"
+```
+
+> **Note:** By default, these endpoints are public and do not require any authentication. If you want to adjust or point to a different API, modify these URLs accordingly.
+
+### 4. Run the Development Server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 5. Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+# or
+yarn build
+```
 
-## Learn More
+To start the production server locally:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run start
+# or
+yarn start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+car-dealer-app/
+  ├─ app/
+  │   ├─ layout.tsx            # RootLayout for the entire app
+  │   ├─ page.tsx              # Home page displaying "Vehicles" and dropdowns
+  │   └─ result/
+  │       └─ [makeId]/
+  │           └─ [year]/
+  │               ├─ page.tsx  # Results page for each makeId/year
+  │               └─ layout.tsx
+  ├─ components/
+  │   ├─ NextButton/
+  │   │   └─ NextButton.tsx     # A button that navigates to the results page
+  │   └─ Loading/
+  │       └─ Loading.tsx        # Loading indicator component
+  ├─ lib/
+  │   ├─ fetchVehicles.ts       # Fetches all vehicle makes from VPIC
+  │   ├─ fetchAllMakeIds.ts     # Fetches a list of makeIds
+  │   └─ fetchVehicleData.ts    # Fetches vehicle models for a specific make/year
+  ├─ .env.local.example         # Example environment variables
+  ├─ package.json
+  └─ tsconfig.json
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[MIT](LICENSE) – You’re free to use and modify this code. See the [`LICENSE`](LICENSE) file for details.
+
+---
