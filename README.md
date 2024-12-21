@@ -1,6 +1,6 @@
 # Car Dealer App
 
-Welcome to the **Car Dealer App**, a Next.js (App Router) application that displays vehicle information from the [VPIC API](https://vpic.nhtsa.dot.gov/api/). This project is a **test assessment**/demo for a front-end JavaScript engineer role, showcasing data fetching, dynamic routing, and client-side interactions in Next.js **13+**.
+Welcome to the **Car Dealer App**, a Next.js (App Router) application that displays vehicle information from the [VPIC API](https://vpic.nhtsa.dot.gov/api/). This project is a **test assessment**/demo for a front-end JavaScript engineer role, showcasing data fetching, dynamic routing, and client-side interactions in Next.js **15**.
 
 ## Features
 
