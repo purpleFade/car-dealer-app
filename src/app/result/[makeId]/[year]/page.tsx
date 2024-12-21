@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Loading } from '@/components/Loading/Loading';
 import Results from '@/components/Results/Results';
+import { fetchAllMakeIds } from '@/lib/fetchAllMakeIds';
 
 interface PageProps {
   params: Promise<{
@@ -21,9 +22,20 @@ const Page = async ({ params }: PageProps) => {
 export default Page;
 
 export async function generateStaticParams() {
-  return [
-    { makeId: '440', year: '2020' },
-    { makeId: '441', year: '2021' },
-    { makeId: '442', year: '2022' },
-  ];
+  let makeIds: number[] = [];
+  try {
+    makeIds = await fetchAllMakeIds();
+  } catch (e) {
+    console.error('Failed to fetch all make IDs:', e);
+    return [];
+  }
+
+  const years = Array.from({ length: 2024 - 2015 + 1 }, (_, i) => 2015 + i);
+
+  return makeIds.flatMap((makeId) =>
+    years.map((year) => ({
+      makeId: makeId.toString(),
+      year: year.toString(),
+    })),
+  );
 }
