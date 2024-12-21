@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 interface NextButtonProps {
   isDisabled: boolean;
-  makeId: string | null;
-  year: number | null;
+  makeId: string;
+  year: number;
 }
 
 const NextButton: React.FC<NextButtonProps> = ({ isDisabled, makeId, year }) => {
